@@ -6,48 +6,21 @@ namespace TestExample
     {
         static void Main(string[] args)
         {
-            var factory = new FlyweightFactory(
-                new Car { Company = "Chevrolet", Model = "Camaro2018", Color = "pink" },
-                new Car { Company = "Mercedes Benz", Model = "C300", Color = "black" },
-                new Car { Company = "Mercedes Benz", Model = "C500", Color = "red" },
-                new Car { Company = "BMW", Model = "M5", Color = "red" },
-                new Car { Company = "BMW", Model = "X6", Color = "white" }
-            );
-            factory.listFlyweights();
+            CustomerStructure customer = new CustomerStructure();
+            customer.Attach(new TaxiCustomer("Sam"));
+            customer.Attach(new TaxiCustomer("John"));
+            customer.Attach(new TaxiCustomer("Carl"));
+            customer.Attach(new PoorCustomer("David"));
+            customer.Attach(new RichCustomer("McOnnel"));
 
-            addCarToPoliceDatabase(factory, new Car
-            {
-                Number = "CL234IR",
-                Owner = "James Doe",
-                Company = "BMW",
-                Model = "M5",
-                Color = "red"
-            });
+            Taxi taxi1 = new Taxi1();
+            Taxi taxi2 = new Taxi2();
 
-            addCarToPoliceDatabase(factory, new Car
-            {
-                Number = "CL234IR",
-                Owner = "James Doe",
-                Company = "BMW",
-                Model = "X1",
-                Color = "red"
-            });
+            customer.Accept(taxi1);
+            Console.WriteLine();
 
-            factory.listFlyweights();
-        }
-    
-        public static void addCarToPoliceDatabase(FlyweightFactory factory, Car car)
-        {
-            Console.WriteLine("\nClient: Adding a car to database.");
+            customer.Accept(taxi2);
 
-            var flyweight = factory.GetFlyweight(new Car
-            {
-                Color = car.Color,
-                Model = car.Model,
-                Company = car.Company
-            });
-
-            flyweight.Operation(car);
         }
     }
 }
