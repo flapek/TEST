@@ -6,20 +6,18 @@ namespace TestExample
     {
         static void Main(string[] args)
         {
-            CustomerStructure customer = new CustomerStructure();
-            customer.Attach(new TaxiCustomer("Sam"));
-            customer.Attach(new TaxiCustomer("John"));
-            customer.Attach(new TaxiCustomer("Carl"));
-            customer.Attach(new PoorCustomer("David"));
-            customer.Attach(new RichCustomer("McOnnel"));
+            Director director = new Director();
 
-            Taxi taxi1 = new Taxi1();
-            Taxi taxi2 = new Taxi2();
+            Builder builder1 = new ConcreteBuilder1();
+            Builder builder2 = new ConcreteBuilder2();
 
-            customer.Accept(taxi1);
-            Console.WriteLine();
+            director.Construct(builder1);
+            Product product1 = builder1.GetResult();
+            product1.Show();
 
-            customer.Accept(taxi2);
+            director.Construct(builder2);
+            Product product2 = builder2.GetResult();
+            product2.Show();
 
         }
     }
