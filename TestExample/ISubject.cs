@@ -6,7 +6,8 @@ namespace TestExample
 {
     interface ISubject
     {
-        void registerBidder(IObserver observer);
-        void notifyObservers();
+        public void Attach(Shop product);
+        public void Detach(Shop product);
+        public void Notify(float price);
     }
 }

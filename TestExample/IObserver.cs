@@ -1,7 +1,9 @@
-﻿namespace TestExample
+﻿using System.Collections.Generic;
+
+namespace TestExample
 {
     internal interface IObserver
     {
-        void update();
+        void update(float price);
     }
 }

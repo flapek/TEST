@@ -6,28 +6,25 @@ namespace TestExample
     {
         static void Main(string[] args)
         {
-            Auctioneer auctioneer = new Auctioneer();
+            DummyProduct product = new DummyProduct();
+            Shop shop1 = new Shop("Shop1");
+            Shop shop2 = new Shop("Shop2");
+            Shop shop3 = new Shop("Shop3");
+            Shop shop4 = new Shop("Shop4");
+            Shop shop5 = new Shop("Shop5");
 
-            Bidder bidder1 = new Bidder("Sławek");
-            auctioneer.registerBidder(bidder1);
+            product.Attach(shop1);
+            product.Attach(shop2);
+            product.Attach(shop3);
+            product.Attach(shop4);
+            product.Attach(shop5);
 
-            Bidder bidder2 = new Bidder("Charlie");
-            auctioneer.registerBidder(bidder2);
+            product.ChangePrice(23.0f);
+            product.Detach(shop2);
 
-            Bidder bidder3 = new Bidder("Nidhi");
-            auctioneer.registerBidder(bidder3);
+            Console.WriteLine("Zmiana na 8zł");
+            product.ChangePrice(8.0f);
 
-            bidder1.giveNewPrice(123);
-            bidder2.giveNewPrice(158);
-            bidder3.giveNewPrice(208);
-
-            auctioneer.displayNewBidderPrice();
-
-            bidder1.giveNewPrice(243);
-            bidder2.giveNewPrice(358);
-            bidder3.giveNewPrice(458);
-
-            auctioneer.displayNewBidderPrice();
         }
     }
 }
